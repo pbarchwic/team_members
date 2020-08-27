@@ -9,13 +9,14 @@ export default class MemberComponent{
     private addMember() : void {
         const membersListy: Array<IMember> = teamMembers.reverse();
         const teamContainer = document.querySelector('.team-members');
-        const modalContainter = document.querySelector('.members-modal');
+        const modalContainter = document.querySelector('.slider');
         membersListy.forEach ( (member: IMember) => {
             teamContainer.insertAdjacentHTML('afterbegin', this.addSingleMember(member));
             modalContainter.insertAdjacentHTML('afterbegin', this.addModalMember(member));
         })
         this.openModal();
-
+        this.preventClick();
+        
     }
 
     private addSingleMember(member: IMember) : string {
@@ -49,7 +50,7 @@ export default class MemberComponent{
         let position = member.position &&
                          `<span class="position">${member.position}</span>`;
         let name = member.fullName &&
-        `<h4 class="name">${member.fullName}</h4>`;        
+        `<span class="name">${member.fullName}</span>`;        
         return `<div class="member" data-user-id="${member.id}">
                     ${position}
                     ${name}
@@ -58,17 +59,26 @@ export default class MemberComponent{
 
     private openModal() : void {
         const member = document.querySelectorAll('.member-item');
+        const slider = document.querySelector(".slider");
+        let memberId;
         member.forEach((member) =>{
             member.addEventListener('click',()=>{
-                (<HTMLElement>document.querySelector('.members-modal')).style.display = "block";
-            })
-        })
+                (<HTMLElement>document.querySelector('.members-modal')).style.display = "flex";
+                memberId = member.getAttribute('data-user-id');
+                slider.scroll({
+                    left: (<HTMLElement>slider.querySelector(`[data-user-id="${memberId}"]`)).offsetLeft
+            
+                });
+            });
+        });
     }
 
-    private preventClick() : void{
+    private preventClick() : void {
         const emails = document.querySelectorAll(".avatar a");
-        emails
-        e.preventDefault();
-        e.stopImmediatePropagation();
+        emails.forEach((el:Element) => {
+            el.addEventListener('click', (event:Event) =>{
+                event.stopImmediatePropagation();
+            });
+        });
     }
-}
+} 
