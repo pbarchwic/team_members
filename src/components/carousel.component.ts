@@ -59,7 +59,8 @@ export class CarouselComponent {
     private addArrow() : void {
         const arrows = `<button class='arrows prev'></button>
                         <button class='arrows next'></button>`;
-        this.slider.insertAdjacentHTML('afterend', arrows);
+        const modal = document.querySelector('.members-modal');
+        modal.insertAdjacentHTML('beforeend', arrows);
         this.arrowMove();
     }
 
@@ -69,6 +70,7 @@ export class CarouselComponent {
         this.scrollLeft = 0;
         arrows.forEach((arrow: Element) => {
             arrow.addEventListener('click', (e: Event) => {
+                this.scrollLeft  = this.slider.scrollLeft;
                 const sliderWidth:number = this.sliderWidth();
                 const isTargetNextArrow = (<HTMLElement>e.target).classList.contains('next')
                 const itemWidth = (<HTMLElement>document.querySelector('.member')).offsetWidth;
