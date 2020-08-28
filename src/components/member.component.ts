@@ -17,7 +17,6 @@ export default class MemberComponent{
         this.openModal();
         this.closeModal();
         this.preventClick();
-        
     }
 
     private addSingleMember(member: IMember) : string {
