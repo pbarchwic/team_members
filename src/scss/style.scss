@@ -90,8 +90,10 @@ body {
     }
   }
   .members-modal {
-    position: absolute;
-    display: none;
+    visibility: hidden;
+    position: fixed;
+    display: flex;
+    opacity: 0;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -99,72 +101,130 @@ body {
     top: 0;
     background-image: url("../images/modal_bg.png");
     background-position: center;
-    // &:after {
-    //   content: "";
-    //   position: absolute; 
-    //   background-color:#48c3dc;
-    //   opacity: 0.6;
-    //   top: 0;
-    //   left: 0;
-    //   bottom: 0;
-    //   right: 0;
-    // }
+    transition: 0.3s;
+    &:after {
+      content: "";
+      position: absolute;
+      z-index: -1;  
+      background-image: linear-gradient(#48c3dc, #29565f);
+      opacity: 0.6;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+    &.active {
+      visibility: visible;
+      opacity:1
+    }
     .slider-container {
       position: relative;
-      width: 90%;
-      max-width: 1200px;
+      width: 80%;
+      max-width: 1000px;
       .slider{
         display: block;
         white-space: nowrap;
-        overflow-x: hidden;
-        height: 40%;
-        max-height: 350px;
-        border: 3px dashed grey;
+        overflow: hidden;
+        height: 350px;
+        border: 6px dashed rgba($color: #fff, $alpha: 0.2);
         cursor: pointer;
+        &:before {
+          content: "";
+          display: inline-block;
+          vertical-align: middle;
+          height: 350px;
+        }
+        @media screen and (max-width: 768px) {
+          height: 200px;
+          &:before {
+            height: 200px;
+          }
+        }
         .member {
           display: inline-block;
           width: 100%;
-          height: 100%;
           text-shadow: 3px 3px 6px grey;
           color: #fff;
+          white-space: normal;
+          vertical-align: middle;
           .position {
             display: block;
-            font-size: 72px;
-            padding: 20px 0;
+            font-size: 40px;
             font-weight: 300;
           }
           .name {
             display: block;
-            font-size: 110px;
-            padding: 20px 0;
+            font-size: 80px;
             font-weight: 600;
+          }
+          @media screen and (max-width: 768px) {
+            .position {
+              font-size: 20px;
+            }
+            .name {
+              font-size: 40px;
+            }
           }
         }
       }
   
-      .arrows {
+      
+    }
+    .modal-close {
+      display: block;
+      position: absolute;
+      right: 50px;
+      top: 25px;
+      &:before, &:after {
+        content: '';
         position: absolute;
-        top: 50%;
-        z-index: 1000;
-        background-color: transparent;
-        border: solid grey;
-        border-width: 0 3px 3px 0;
-        display: inline-block;
-        padding: 15px;
-        outline:none;
+        transform: rotate(45deg);
+        height: 40px;
+        width: 12px;
+        border-radius: 2px;
+        background-color: #fff;
+        transition: 0.3s;
         cursor: pointer;
-  
-        &.prev {
-          left: 30px;
-          transform: rotate(135deg);
-          -webkit-transform: rotate(135deg);
+      }
+      &:after {
+        transform: rotate(135deg);
+      }
+      &:hover {
+        &:before, &:after {
+          background-color: lightgrey;
         }
-  
-        &.next {
-          right :30px;
-          transform: rotate(-45deg);
-          -webkit-transform: rotate(-45deg);
-        }
+      }
+    }
+    .arrows {
+      position: absolute;
+      top: 50%;
+      z-index: 1000;
+      background-color: transparent;
+      border: solid #fff;
+      border-width: 0 10px 10px 0;
+      display: inline-block;
+      padding: 15px;
+      outline:none;
+      cursor: pointer;
+      transition: 0.3s;
+      &.prev {
+        left: 30px;
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+      }
+
+      &.next {
+        right :30px;
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+      }
+      &:hover {
+        border-color: lightgrey;
+      }
+      
+      @media screen and (max-width: 768px) {
+        //display: none;
+        top: 90%
       }
     }
   }

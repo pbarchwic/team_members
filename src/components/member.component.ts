@@ -15,8 +15,8 @@ export default class MemberComponent{
             modalContainter.insertAdjacentHTML('afterbegin', this.addModalMember(member));
         })
         this.openModal();
+        this.closeModal();
         this.preventClick();
-        
     }
 
     private addSingleMember(member: IMember) : string {
@@ -63,7 +63,7 @@ export default class MemberComponent{
         let memberId;
         member.forEach((member) =>{
             member.addEventListener('click',()=>{
-                (<HTMLElement>document.querySelector('.members-modal')).style.display = "flex";
+                (<HTMLElement>document.querySelector('.members-modal')).classList.add('active');
                 memberId = member.getAttribute('data-user-id');
                 slider.scroll({
                     left: (<HTMLElement>slider.querySelector(`[data-user-id="${memberId}"]`)).offsetLeft
@@ -71,6 +71,13 @@ export default class MemberComponent{
                 });
             });
         });
+    }
+
+    private closeModal(): void {
+        const closeBtn = document.querySelector(".modal-close");
+        closeBtn.addEventListener('click', () => {
+            (<HTMLElement>document.querySelector('.members-modal')).classList.remove('active');  
+        })
     }
 
     private preventClick() : void {

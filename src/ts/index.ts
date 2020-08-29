@@ -1,7 +1,7 @@
 import MemberComponent from "../components/member.component"
-import { CarouselComponent } from "../components/carousel.component";
+import { SliderComponent } from "../components/slider.component";
 
 document.addEventListener('DOMContentLoaded', () => {
     new MemberComponent();
-    new CarouselComponent();
+    new SliderComponent();
 });
