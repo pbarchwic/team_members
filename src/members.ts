@@ -20,7 +20,7 @@ export const teamMembers: Array<IMember> = [
         id: 3,
         fullName: "Edyta Leśniewska",
         photo: "src/images/team/New3.png",
-        position: "Head of Human REsources",
+        position: "Head of Human Resources",
         localization: "Warsaw",
     },
     {

@@ -124,17 +124,29 @@ body {
       .slider{
         display: block;
         white-space: nowrap;
-        overflow-x: hidden;
-        height: 450px;
-        max-height: 350px;
-        border: 3px dashed grey;
+        overflow: hidden;
+        height: 350px;
+        border: 6px dashed rgba($color: #fff, $alpha: 0.2);
         cursor: pointer;
+        &:before {
+          content: "";
+          display: inline-block;
+          vertical-align: middle;
+          height: 350px;
+        }
+        @media screen and (max-width: 768px) {
+          height: 200px;
+          &:before {
+            height: 200px;
+          }
+        }
         .member {
           display: inline-block;
           width: 100%;
           text-shadow: 3px 3px 6px grey;
           color: #fff;
           white-space: normal;
+          vertical-align: middle;
           .position {
             display: block;
             font-size: 40px;
@@ -144,6 +156,14 @@ body {
             display: block;
             font-size: 80px;
             font-weight: 600;
+          }
+          @media screen and (max-width: 768px) {
+            .position {
+              font-size: 20px;
+            }
+            .name {
+              font-size: 40px;
+            }
           }
         }
       }
@@ -203,8 +223,8 @@ body {
       }
       
       @media screen and (max-width: 768px) {
-        display: none;
-        
+        //display: none;
+        top: 90%
       }
     }
   }
