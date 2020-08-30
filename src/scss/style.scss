@@ -134,7 +134,7 @@ body {
           vertical-align: middle;
           height: 350px;
         }
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 767px) {
           height: 200px;
           &:before {
             height: 200px;
@@ -157,7 +157,7 @@ body {
             font-size: 80px;
             font-weight: 600;
           }
-          @media screen and (max-width: 768px) {
+          @media screen and (max-width: 767px) {
             .position {
               font-size: 20px;
             }
@@ -222,8 +222,7 @@ body {
         border-color: lightgrey;
       }
       
-      @media screen and (max-width: 768px) {
-        //display: none;
+      @media screen and (max-width: 767px) {
         top: 90%
       }
     }
